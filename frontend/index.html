@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockchain-Based Digital Will System</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <p class="eyebrow">Blockchain Project</p>
+        <h1>Digital Will System</h1>
+        <p class="intro">
+          Store a digital will on Ethereum and allow only the nominee to read it
+          after the release time.
+        </p>
+
+        <div class="form-group">
+          <label for="contractAddress">Contract Address</label>
+          <input
+            type="text"
+            id="contractAddress"
+            placeholder="Paste deployed contract address here"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="willData">Will Data</label>
+          <textarea
+            id="willData"
+            rows="6"
+            placeholder="Write the digital will here"
+          ></textarea>
+        </div>
+
+        <div class="button-row">
+          <button id="connectButton">Connect MetaMask</button>
+          <button id="saveButton">Save Will</button>
+          <button id="fetchButton">Fetch Will</button>
+        </div>
+
+        <div class="status-box">
+          <p><strong>Connected Wallet:</strong> <span id="walletAddress">Not connected</span></p>
+          <p><strong>Status:</strong> <span id="statusMessage">Waiting for action...</span></p>
+        </div>
+
+        <div class="result-box">
+          <h2>Fetched Will</h2>
+          <pre id="willOutput">No will fetched yet.</pre>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

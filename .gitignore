@@ -1,0 +1,15 @@
+node_modules/
+artifacts/
+cache/
+coverage/
+.env
+.env.local
+.env.*.local
+dist/
+*.log
+hardhat-node.out.txt
+hardhat-node.err.txt
+frontend-server.out.txt
+frontend-server.err.txt
+.DS_Store
+Thumbs.db
