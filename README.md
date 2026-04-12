@@ -168,16 +168,24 @@ Currency Symbol: ETH
 
 ### 6. Import test accounts into MetaMask
 
-Owner private key:
+When you run:
 
 ```text
-0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+npm run node
 ```
 
-Nominee private key:
+Hardhat prints multiple local development accounts and their private keys in the terminal.
+
+For this project:
+
+- use `Account #0` as the owner
+- use `Account #1` as the nominee
+
+Important:
 
 ```text
-0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+These are Hardhat test accounts meant only for localhost development.
+Never use test private keys on Sepolia, Mainnet, or any public blockchain.
 ```
 
 ### 7. Deploy the contract
