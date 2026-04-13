@@ -31,7 +31,7 @@ contract DigitalWill {
      */
     constructor(address _nominee, uint256 _releaseTime) {
         require(_nominee != address(0), "Nominee address cannot be zero");
-        require(_releaseTime > block.timestamp, "Release time must be in the future");
+        require(_releaseTime >= block.timestamp, "Release time cannot be in the past");
 
         owner = msg.sender;
         nominee = _nominee;

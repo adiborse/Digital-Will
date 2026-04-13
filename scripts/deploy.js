@@ -4,9 +4,9 @@ async function main() {
   // Get test accounts from the local Hardhat network.
   const [deployer, nomineeSigner] = await hre.ethers.getSigners();
 
-  // Set release time to 1 hour from deployment for easy local testing.
+  // Set release time to the current block timestamp so the nominee can access it immediately.
   const currentBlock = await hre.ethers.provider.getBlock("latest");
-  const releaseTime = currentBlock.timestamp + 3600;
+  const releaseTime = currentBlock.timestamp;
 
   console.log("Deploying contract with account:", deployer.address);
   console.log("Nominee address:", nomineeSigner.address);
