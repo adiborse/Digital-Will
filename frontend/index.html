@@ -25,6 +25,22 @@
           />
         </div>
 
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nomineeAddress">Nominee Address</label>
+            <input
+              type="text"
+              id="nomineeAddress"
+              placeholder="Paste nominee wallet address"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="releaseTime">Release Time</label>
+            <input type="datetime-local" id="releaseTime" />
+          </div>
+        </div>
+
         <div class="form-group">
           <label for="willData">Will Data</label>
           <textarea
@@ -43,6 +59,8 @@
         <div class="status-box">
           <p><strong>Connected Wallet:</strong> <span id="walletAddress">Not connected</span></p>
           <p><strong>Status:</strong> <span id="statusMessage">Waiting for action...</span></p>
+          <p><strong>Nominee:</strong> <span id="savedNominee">Not set</span></p>
+          <p><strong>Release Time:</strong> <span id="savedReleaseTime">Not set</span></p>
         </div>
 
         <div class="result-box">

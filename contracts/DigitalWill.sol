@@ -12,8 +12,9 @@ contract DigitalWill {
     string private willData;
     uint256 public releaseTime;
 
-    event WillCreated(address indexed owner, address indexed nominee, uint256 releaseTime);
-    event WillUpdated(address indexed owner, uint256 updatedAt);
+    event WillCreated(address indexed owner);
+    event WillUpdated(address indexed owner, address indexed nominee, uint256 releaseTime, uint256 updatedAt);
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Only the owner can perform this action");
         _;
@@ -25,32 +26,31 @@ contract DigitalWill {
     }
 
     /**
-     * @dev Sets the contract owner, nominee, and release time when deployed.
-     * @param _nominee Wallet address of the nominee.
-     * @param _releaseTime Unix timestamp after which the nominee can read the will.
+     * @dev Sets the contract owner when deployed.
      */
-    constructor(address _nominee, uint256 _releaseTime) {
-        require(_nominee != address(0), "Nominee address cannot be zero");
-        require(_releaseTime >= block.timestamp, "Release time cannot be in the past");
-
+    constructor() {
         owner = msg.sender;
-        nominee = _nominee;
-        releaseTime = _releaseTime;
 
-        emit WillCreated(owner, nominee, releaseTime);
+        emit WillCreated(owner);
     }
 
     /**
-     * @dev Stores or updates the will text.
+     * @dev Stores or updates the will details.
      * Only the owner is allowed to call this function.
      * @param data The will content to store on the blockchain.
+     * @param _nominee Wallet address of the nominee.
+     * @param _releaseTime Unix timestamp after which the nominee can read the will.
      */
-    function setWill(string memory data) external onlyOwner {
+    function setWill(string memory data, address _nominee, uint256 _releaseTime) external onlyOwner {
         require(bytes(data).length > 0, "Will data cannot be empty");
+        require(_nominee != address(0), "Nominee address cannot be zero");
+        require(_releaseTime >= block.timestamp, "Release time must be in the future");
 
         willData = data;
+        nominee = _nominee;
+        releaseTime = _releaseTime;
 
-        emit WillUpdated(msg.sender, block.timestamp);
+        emit WillUpdated(msg.sender, _nominee, _releaseTime, block.timestamp);
     }
 
     /**

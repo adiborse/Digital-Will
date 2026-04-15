@@ -1,22 +1,12 @@
 const hre = require("hardhat");
 
 async function main() {
-  // Get test accounts from the local Hardhat network.
-  const [deployer, nomineeSigner] = await hre.ethers.getSigners();
-
-  // Set release time to the current block timestamp so the nominee can access it immediately.
-  const currentBlock = await hre.ethers.provider.getBlock("latest");
-  const releaseTime = currentBlock.timestamp;
+  const [deployer] = await hre.ethers.getSigners();
 
   console.log("Deploying contract with account:", deployer.address);
-  console.log("Nominee address:", nomineeSigner.address);
-  console.log("Release time (unix):", releaseTime);
 
-  // Create a contract factory for the DigitalWill contract.
   const DigitalWill = await hre.ethers.getContractFactory("DigitalWill");
-
-  // Deploy the contract by passing nominee and release time to the constructor.
-  const digitalWill = await DigitalWill.deploy(nomineeSigner.address, releaseTime);
+  const digitalWill = await DigitalWill.deploy();
   await digitalWill.waitForDeployment();
 
   const contractAddress = await digitalWill.getAddress();
@@ -26,8 +16,9 @@ async function main() {
   console.log("");
   console.log("Next step:");
   console.log("1. Copy the contract address.");
-  console.log("2. Open frontend/index.html in a browser.");
+  console.log("2. Open the frontend in your browser.");
   console.log("3. Paste the address into the Contract Address field.");
+  console.log("4. Enter nominee address, release time, and will data in the form.");
 }
 
 main().catch((error) => {
